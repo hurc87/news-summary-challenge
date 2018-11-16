@@ -1,8 +1,8 @@
-const app = document.getElementById('headline_box');
+// setting up divs for html
 
+const app = document.getElementById('headline_box');
 const container = document.createElement('div');
 container.setAttribute('class', 'container');
-
 app.appendChild(container);
 
 //  Create a request variable and assign a new XMLHttpRequest object to it.
@@ -17,30 +17,37 @@ request.onload = function(){
   if(request.status >= 200 && request.status < 400) {
 
     for (var i = 0; i < data.response.results.length; i++){
-      console.log(data.response.results[i].webTitle);
 
       // create a div with a card class
       const card = document.createElement('div');
       card.setAttribute('class', 'card');
-      console.log('create divs')
 
 
       // create h2 and set text content to article webTitle
       const h2 = document.createElement('h2');
       h2.textContent = data.response.results[i].webTitle;
-      console.log('fill divs')
 
       // create img and set content to article img
       const image = document.createElement('img');
       image.setAttribute('src', data.response.results[i].blocks.main.elements[0].assets[1].file );
-      console.log('add image');
+
+      // create link title to original page
+      const link_title = document.createElement('p');
+      link_title.textContent = "Click here for the original page";
+
+      // create link to original page
+      const link = document.createElement('a');
+      link.textContent = 'Click here for the original page';
+      link.setAttribute('href', data.response.results[i].webUrl );
+      console.log(data.response.results[i].webUrl)
 
       // append card to container element
       container.appendChild(card);
 
-      // each card will contain the h2 and image
+      // each card will contain the h2, image, link
       container.appendChild(h2);
       container.appendChild(image);
+      container.appendChild(link);
 
     };
 
