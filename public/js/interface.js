@@ -28,24 +28,20 @@ request.onload = function(){
       const card = document.createElement('div');
       card.setAttribute('class', 'card');
 
-      // create h2 and set text content to article webTitle
-      const h2 = document.createElement('h2');
-      h2.textContent = data.response.results[i].webTitle;
-
       // create img and set content to article img
       const image = document.createElement('img');
       image.setAttribute('src', data.response.results[i].blocks.main.elements[0].assets[1].file );
 
+      // create  text content to article webTitle
       // create link to summary
       const link = document.createElement('a');
-      link.textContent = 'Click here for the summary page';
+      link.textContent = data.response.results[i].webTitle;
       link.setAttribute('href', "#"+i );
 
       // append card to container element
       container.appendChild(card);
 
-      // each card will contain the h2, image, link
-      card.appendChild(h2);
+      // each card will contain, image, link
       card.appendChild(image);
       card.appendChild(link);
 
@@ -67,7 +63,7 @@ request.onload = function(){
       const p = document.createElement('p');
       // trying to strip html tags from string
       var StrippedString = data.response.results[i].blocks.body[0].bodyHtml.replace(/(<([^>]+)>)/ig,"");
-      const description = StrippedString.substring(0,300);
+      const description = StrippedString.substring(0,500);
       p.textContent = `${description}...`;
 
       // create link to original page
