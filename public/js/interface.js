@@ -9,7 +9,7 @@ app.appendChild(container);
 var request = new XMLHttpRequest();
 
 // Open a new connection using the GET request on the URL endpoint
-request.open('GET', 'https://content.guardianapis.com/search?q=politics&api-key='+ config, true);
+request.open('GET', 'https://content.guardianapis.com/search?q=politics&show-blocks=all&&api-key='+ config, true);
 
 request.onload = function(){
   // Begin accessing JSON data here
@@ -24,16 +24,23 @@ request.onload = function(){
       card.setAttribute('class', 'card');
       console.log('create divs')
 
+
       // create h2 and set text content to article webTitle
       const h2 = document.createElement('h2');
       h2.textContent = data.response.results[i].webTitle;
       console.log('fill divs')
 
+      // create img and set content to article img
+      const image = document.createElement('img');
+      image.setAttribute('src', data.response.results[i].blocks.main.elements[0].assets[1].file );
+      console.log('add image');
+
       // append card to container element
       container.appendChild(card);
 
-      // each card will contain the h2
+      // each card will contain the h2 and image
       container.appendChild(h2);
+      container.appendChild(image);
 
     };
 
