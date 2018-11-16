@@ -28,7 +28,6 @@ request.onload = function(){
       const card = document.createElement('div');
       card.setAttribute('class', 'card');
 
-
       // create h2 and set text content to article webTitle
       const h2 = document.createElement('h2');
       h2.textContent = data.response.results[i].webTitle;
@@ -37,11 +36,10 @@ request.onload = function(){
       const image = document.createElement('img');
       image.setAttribute('src', data.response.results[i].blocks.main.elements[0].assets[1].file );
 
-      // create link to original page
+      // create link to summary
       const link = document.createElement('a');
-      link.textContent = 'Click here for the original page';
-      link.setAttribute('href', data.response.results[i].webUrl );
-      console.log(data.response.results[i].webUrl)
+      link.textContent = 'Click here for the summary page';
+      link.setAttribute('href', "#"+i );
 
       // append card to container element
       container.appendChild(card);
